@@ -23,7 +23,7 @@ if not os.path.exists(EXTRACT_PATH):
     print("Model artifacts extracted successfully!")
 
 # ================== Load artifacts ==================
-ARTIFACT_DIR = EXTRACT_PATH  # use the extracted folder from gdown
+ARTIFACT_DIR = os.path.join(EXTRACT_PATH, "model_artifacts")
 
 model = joblib.load(os.path.join(ARTIFACT_DIR, "loan_rf_model.pkl"))
 scaler = joblib.load(os.path.join(ARTIFACT_DIR, "scaler.pkl"))
