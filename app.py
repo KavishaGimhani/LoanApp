@@ -13,8 +13,7 @@ DRIVE_FILE_ID = "1GhTQ_LdH2aEFHefvnTB3l7HDDvloZq3n"
 
 # File path to save
 zip_path = "C:\\Users\\LENOVO\\Desktop\\SLIIT degree\\3Y2S\\FDM\\FDMProject\\Loan_Default-Model\\model_artifacts.zip"
-extract_path = "C:\\Users\\LENOVO\\Desktop\\SLIIT degree\\3Y2S\\FDM\\FDMProject\\Loan_Default-Model\\model_artifacts"
-
+extract_path = "C:\\Users\\LENOVO\\Desktop\\SLIIT degree\\3Y2S\\FDM\\FDMProject\\Loan_Default-Model"
 # Download and extract if not present
 if not os.path.exists(extract_path):
     print("Downloading model artifacts from Google Drive...")
@@ -23,13 +22,14 @@ if not os.path.exists(extract_path):
         zip_ref.extractall(extract_path)
     print("Model artifacts extracted successfully!")
 
-
 # ================== Load artifacts ==================
-ARTIFACT_DIR = "model_artifacts"
-model = joblib.load(os.path.join(ARTIFACT_DIR, "C:\\Users\\LENOVO\\Desktop\\SLIIT degree\\3Y2S\\FDM\\FDMProject\\Loan_Default-Model\\model_artifacts\\loan_rf_model.pkl"))
-scaler = joblib.load(os.path.join(ARTIFACT_DIR, "C:\\Users\\LENOVO\\Desktop\\SLIIT degree\\3Y2S\\FDM\\FDMProject\\Loan_Default-Model\\model_artifacts\\scaler.pkl"))
-label_encoders = joblib.load(os.path.join(ARTIFACT_DIR, "C:\\Users\\LENOVO\\Desktop\\SLIIT degree\\3Y2S\\FDM\\FDMProject\\Loan_Default-Model\\model_artifacts\\label_encoders.pkl"))
-features = joblib.load(os.path.join(ARTIFACT_DIR, "C:\\Users\\LENOVO\\Desktop\\SLIIT degree\\3Y2S\\FDM\\FDMProject\\Loan_Default-Model\\model_artifacts\\features.pkl"))
+ARTIFACT_DIR = extract_path  # use the extracted folder from gdown
+
+model = joblib.load(os.path.join(ARTIFACT_DIR, "loan_rf_model.pkl"))
+scaler = joblib.load(os.path.join(ARTIFACT_DIR, "scaler.pkl"))
+label_encoders = joblib.load(os.path.join(ARTIFACT_DIR, "label_encoders.pkl"))
+features = joblib.load(os.path.join(ARTIFACT_DIR, "features.pkl"))
+
 
 # ================== Page Config ==================
 st.set_page_config(
