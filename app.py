@@ -12,18 +12,18 @@ import zipfile
 DRIVE_FILE_ID = "1GhTQ_LdH2aEFHefvnTB3l7HDDvloZq3n"
 
 # File path to save
-zip_path = "C:\\Users\\LENOVO\\Desktop\\SLIIT degree\\3Y2S\\FDM\\FDMProject\\Loan_Default-Model\\model_artifacts.zip"
-extract_path = "C:\\Users\\LENOVO\\Desktop\\SLIIT degree\\3Y2S\\FDM\\FDMProject\\Loan_Default-Model"
+ZIP_PATH = "model_artifacts.zip"
+EXTRACT_PATH = "model_artifacts"
 # Download and extract if not present
-if not os.path.exists(extract_path):
+if not os.path.exists(EXTRACT_PATH):
     print("Downloading model artifacts from Google Drive...")
-    gdown.download(f"https://drive.google.com/uc?id={DRIVE_FILE_ID}", zip_path, quiet=False)
-    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(extract_path)
+    gdown.download(f"https://drive.google.com/uc?id={DRIVE_FILE_ID}", ZIP_PATH, quiet=False)
+    with zipfile.ZipFile(ZIP_PATH, 'r') as zip_ref:
+        zip_ref.extractall(EXTRACT_PATH)
     print("Model artifacts extracted successfully!")
 
 # ================== Load artifacts ==================
-ARTIFACT_DIR = extract_path  # use the extracted folder from gdown
+ARTIFACT_DIR = EXTRACT_PATH  # use the extracted folder from gdown
 
 model = joblib.load(os.path.join(ARTIFACT_DIR, "loan_rf_model.pkl"))
 scaler = joblib.load(os.path.join(ARTIFACT_DIR, "scaler.pkl"))
